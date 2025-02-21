@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { loginRequest, registerRequest, verifyTokenRequest } from '../api/auth'
+import { loginRequest, registerRequest, verifyTokenRequest, updateProfileRequest } from '../api/auth'
 import Cookie from 'js-cookie'
 
 export const AuthContext = createContext()
@@ -17,7 +17,6 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [errors, setErrors] = useState([])
-    const [loading, setLoading] = useState(true)
 
     const singup = async ( user ) => {
         try {
@@ -46,6 +45,16 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false)
     }
 
+    const update = async (user) => {
+         try{
+            const res = await updateProfileRequest(user)
+            setUser(res.data)
+            setIsAuthenticated(true)
+        } catch (err) {
+            setErrors(err.response.data)
+        }
+
+    }
 
     useEffect(() => {
         async function checkLogin ()  {
@@ -53,7 +62,6 @@ export const AuthProvider = ({ children }) => {
             if (!token) {
                 Cookie.remove('token')
                 setIsAuthenticated(false)
-                setLoading(false)
                 setUser(null)
                 return
             }
@@ -61,19 +69,16 @@ export const AuthProvider = ({ children }) => {
             try {
                 const res = await verifyTokenRequest(token)
                 if (!res.data){
-                    setLoading(false)
                     setIsAuthenticated(false)
                     return
                 }
 
                 setUser(res.data)
                 setIsAuthenticated(true)
-                setLoading(false)
             }
             catch (err) {
                 setIsAuthenticated(false)
                 setUser(null)
-                setLoading(false)
                 console.log(err)
             }
         
@@ -95,10 +100,10 @@ export const AuthProvider = ({ children }) => {
             user, 
             isAuthenticated,
             errors, 
-            loading, 
             singup,
             singin,
             logout,
+            update
         }}>
             { children }
         </AuthContext.Provider>

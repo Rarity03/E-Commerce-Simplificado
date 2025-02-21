@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useProduct } from '../context/ProductContext';
 //import { useState } from 'react';
@@ -6,6 +6,7 @@ import { useProduct } from '../context/ProductContext';
 export default function Navbar(){
     const { isAuthenticated, logout, user } = useAuth()
     const {setFilters} = useProduct()
+    const location = useLocation();
 
     const handleNameChange = (e) => {
         setFilters((prevFilters) => ({ ...prevFilters, name: e.target.value }));
@@ -17,14 +18,16 @@ export default function Navbar(){
                 <div className='text-white text-4xl font-bold flex-shrink-0'>
                     <li><Link to="/">E-Commerce</Link></li>
                 </div>
-                <div className="flex-grow mx-10">
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        onChange={handleNameChange}
-                    />
-                </div>
+                {location.pathname === '/' && (
+                    <div className="flex-grow mx-10">
+                        <input
+                            type="text"
+                            placeholder="Search products..."
+                            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onChange={handleNameChange}
+                        />
+                    </div>
+                )}
                 <div>
                     <ul className='flex space-x-4 items-center'>
                         <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>

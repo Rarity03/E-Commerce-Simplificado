@@ -49,7 +49,7 @@ class CarController {
         try{
             const userId = req.user.id
             const userCar = await Car.findOne({ userId }).populate('products.productId');
-            if (!userCar) return res.status(404).json({ message: 'Car not found' });
+            if (!userCar) return res.status(200).json(['The Car is Empty' ]);
             return res.status(200).json(userCar)
         } catch(err){
             return res.status(404).json({message: err})

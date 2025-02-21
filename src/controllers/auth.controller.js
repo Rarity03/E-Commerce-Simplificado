@@ -48,7 +48,10 @@ class AuthController{
             res.json({
                 id: userFound._id,
                 name: userFound.name,
-                email: userFound.email
+                email: userFound.email,
+                direction: userFound.direction,
+                phone: userFound.phone
+
             })
         } catch (err) {
             return res.status(400).json(e)    
@@ -73,7 +76,9 @@ class AuthController{
             return res.json({
                 id: userFound._id,
                 name: userFound.name,
-                email: userFound.email
+                email: userFound.email,
+                direction: userFound.direction,
+                phone: userFound.phone
             })
         })
     }

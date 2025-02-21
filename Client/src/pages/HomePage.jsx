@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar"
 import { useEffect } from "react"
 import { useProduct } from "../context/ProductContext"
 import ProductCard from "../components/ProductCard"
@@ -14,7 +13,6 @@ export default function HomePage() {
 
     return (
       <>
-        <Navbar />
         <div className="bg-slate-100 grid-cols-2 flex justify-between p-4">
           <div className="w-1/4 p-4">
             <FilterOptions />
