@@ -20,9 +20,9 @@ export default function RegisterPage() {
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
           {
-            registerErrors && registerErrors.map((error, index) => {
+            registerErrors && registerErrors.map((error, index) => (
               <div className="bg-red-500 p-2 text-white mb-2" key={index}>{error}</div>
-            })
+            ))
           }
           <h1 className="text-2xl font-bold text-center text-gray-800">Register</h1>
           <form onSubmit={onSubmit}>

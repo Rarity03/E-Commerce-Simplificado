@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { addToCarRequest, getCarRequest, removeFromCarRequest } from "../api/car";
+import { addToCarRequest, decreaseFromCarRequest, deleteCarRequest, getCarRequest, removeFromCarRequest } from "../api/car";
 
 export const CarContext = createContext()
 
@@ -20,8 +20,7 @@ export const CarProvider = ({ children }) => {
     const getCar = async (user) => {
         try {
             const res = await getCarRequest(user);
-            setCar(res.data.car)
-            console.log('Este es el carrito',res.data.car)
+            setCar(res.data.products)
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -30,8 +29,18 @@ export const CarProvider = ({ children }) => {
     const addCar = async (productId, amount) => {
         try {
             const res = await addToCarRequest({ productId, amount })
-            setCar(res.data);
-            console.log(res)
+            setCar(res.data.products);
+            await getCar()
+        } catch (err) {
+            setErrors(err.response.data)
+        }
+    }
+
+    const decreaseCar = async (productId) => {
+        try {
+            const res = await decreaseFromCarRequest(productId)
+            setCar(res.data.products);
+            await getCar()
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -40,7 +49,18 @@ export const CarProvider = ({ children }) => {
     const removeCar = async (user) => {
         try{
             const res = await removeFromCarRequest(user)
-            console.log(res)
+            setCar(res.data.products);
+            await getCar()
+        } catch (err) {
+            setErrors(err.response.data)
+        }
+    }
+
+    const deleteCar = async () => {
+        try{
+            const res = await deleteCarRequest()
+            setCar(res.data.products);
+            await getCar()
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -52,7 +72,9 @@ export const CarProvider = ({ children }) => {
             error,
             getCar,
             addCar,
-            removeCar
+            removeCar,
+            decreaseCar,
+            deleteCar
         }}>
             {children}
         </CarContext.Provider>

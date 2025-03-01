@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
     const singup = async ( user ) => {
         try {
             const res = await registerRequest( user )
-            console.log( res )
             setUser(res.data)
             setIsAuthenticated(true)
         } catch (err) {

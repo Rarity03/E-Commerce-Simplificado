@@ -7,6 +7,8 @@ const router = new Router()
 router.get('/car', authRequired, CarController.getCar)
 router.post('/car-add', authRequired, CarController.addToCar)
 router.post('/car-remove', authRequired, CarController.removeFromCar)
+router.post('/car-decrease', authRequired, CarController.decreaseToCar)
+router.delete('/car', authRequired, CarController.deleteCar)
 
 
 export default router
