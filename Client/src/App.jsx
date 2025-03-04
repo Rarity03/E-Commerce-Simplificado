@@ -8,10 +8,10 @@ import CarPage from "./pages/CarPage"
 import OrderPage from "./pages/OrderPage"
 import { AuthProvider } from "./context/AuthContext"
 import { ProductProvider } from "./context/ProductContext"
-import Navbar from "./components/Navbar"
 import { CarProvider } from "./context/CarContext"
-import ProductPage from "./pages/ProductPage"
 import { OrderProvider } from "./context/OrderContext"
+import Navbar from "./components/Navbar"
+import ProductPage from "./pages/ProductPage"
 
 function App() {
   return (

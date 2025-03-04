@@ -46,7 +46,7 @@ export const OrderProvider = ({ children }) => {
     }
 
     return(
-        <OrderContext.Provider values = {{
+        <OrderContext.Provider value = {{
                 orders,
                 order,
                 error,

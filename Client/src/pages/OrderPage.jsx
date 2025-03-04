@@ -1,11 +1,14 @@
 import { useEffect} from "react"
 import { useOrder } from "../context/OrderContext"
+import { useAuth } from "../context/AuthContext"
+import OrderCard from "../components/OrderCard";
 
 export default function OrderPage(){
+    const { user } = useAuth();
     const { orders, getOrders } = useOrder()
     useEffect(() => {
         getOrders()
-    }, [])
+    }, [user])
 
     return (
       <div className="p-4">
@@ -14,18 +17,8 @@ export default function OrderPage(){
             <>
               {
                 orders.map((order) => (
-                  <div key={order._id} className="flex justify-between items-center border-b border-gray-300 py-4">
-                    <div>
-                      <p className="text-lg font-bold">{order._id}</p>
-                      <p>{order.createdAt}</p>
-                    </div>
-                    <div>
-                      <p className="text-lg font-bold">${order.total}</p>
-                      <p>{order.status}</p>
-                    </div>
-                  </div>
-                ))
-              }
+                  <OrderCard key={order._id} order={order} />
+                ))}
             </>
           ) : (
             <div className="flex justify-center items-center h-64 border-2 border-dashed border-gray-300 rounded-lg">

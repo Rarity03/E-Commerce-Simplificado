@@ -3,12 +3,14 @@ import { useAuth } from "../context/AuthContext";
 import { useCar } from "../context/CarContext";
 import CarCard from "../components/CarCard";
 import { useNavigate } from "react-router-dom";
+import { useOrder } from "../context/OrderContext";
 
 export default function CarPage() {
   const { user } = useAuth();
-  const { car, getCar, addCar, removeCar, decreaseCar } = useCar();
+  const { car, getCar, addCar, removeCar, decreaseCar, deleteCar } = useCar();
+  const { createOrder } = useOrder();
   const [loading, setLoading] = useState(true);
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchCar = async () => {
@@ -32,7 +34,13 @@ export default function CarPage() {
   };
 
   const handleOrder = async () => {
-    navigation('/orders')
+    try {
+      await createOrder();
+      navigate('/orders');
+      await deleteCar();
+    } catch (error) {
+      console.error("Error creating order or deleting cart:", error);
+    }
   }
 
   return (

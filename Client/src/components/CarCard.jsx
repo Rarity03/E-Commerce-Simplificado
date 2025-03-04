@@ -19,7 +19,7 @@ export default function CarCard({ product, amount, onIncrease, onDecrease, onRem
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 CarCard.propTypes = {
