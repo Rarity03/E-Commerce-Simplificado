@@ -39,7 +39,7 @@ export default function ProfilePage() {
 
     return (
       <>
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 min-w-[600px] mt-20">
           <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
             <div className="relative">
               <img

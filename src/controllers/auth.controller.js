@@ -1,7 +1,6 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { SECRET_KEY } from '../config.js'
 import { createAccessToken } from '../libs/jwt.js'
 
 class AuthController{
@@ -21,7 +20,11 @@ class AuthController{
             })
             const userSaved = await newUser.save()
             const token = await createAccessToken({ id: userSaved._id })
-            res.cookie('token', token)
+            res.cookie('token', token, {
+                httpOnly: true, 
+                secure: true, 
+                sameSite: 'None'
+            })
             res.json({
                 id: userSaved._id,
                 name: userSaved.name,
@@ -44,7 +47,11 @@ class AuthController{
             if(!matchPassword) return res.status(401).json(['Incorrect password'])
             
             const token = await createAccessToken({ id: userFound._id })
-            res.cookie('token', token)
+            res.cookie('token', token, {
+                httpOnly: true, 
+                secure: true, 
+                sameSite: 'None'
+            })
             res.json({
                 id: userFound._id,
                 name: userFound.name,
@@ -69,7 +76,7 @@ class AuthController{
         const { token } = req.cookies
         if(!token) return res.status(401).json(['Unauthorized'])
         
-        jwt.verify(token, SECRET_KEY, async (err, user) => {
+        jwt.verify(token, process.env.SECRET_KEY, async (err, user) => {
             if(err) return res.status(401).json({ message: 'Unauthorized' })
             const userFound = await User.findById(user.id)
             if (!userFound) return res.status(403).json({ message: 'Forbidden' })

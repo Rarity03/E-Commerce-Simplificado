@@ -3,7 +3,7 @@ import { format } from "date-fns"
 
 export default function OrderCard ({ order }){
     return(
-        <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
+        <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4 ">
             <div className='p-4 border-b border-gray-300'>
                 <p className="text-lg font-bold">Order ID: {order._id}</p>
                 <p>Shipping Address: {order.addressShipping}</p>
@@ -13,13 +13,13 @@ export default function OrderCard ({ order }){
                 <div className="flex flex-col gap-2">
                     {
                     order.products.map((product) => (
-                        <div key={product.productId._id} className="flex justify-between items-center w-full border-b py-2">
-                        <div className="w-1/4 h-">
-                            <img src={product.productId.image} alt={product.productId.name} className="w-1/4 h-auto object-cover" />
-                        </div>
-                        <p className="w-1/2 truncate">{product.productId.name}</p>
-                        <p className="w-1/4 text-center">{product.amount}</p>
-                        <p className="w-1/4 text-right">${product.price}</p>
+                        <div key={product.productId._id} className="flex flex-col md:flex-row justify-between items-center w-full border-b py-2">
+                            <div className="w-full md:w-1/4 max-h-64">.
+                                <img src={product.productId.image} alt={product.productId.name} className="w-full h-full object-cover" />
+                            </div>
+                            <p className="w-full md:w-1/2 m-1 truncate text-center md:text-left">{product.productId.name}</p>
+                            <p className="w-full md:w-1/4 m-1 text-center">{product.amount}</p>
+                            <p className="w-full md:w-1/4 m-1 sm:text-center md:text-right font-bold">${product.price}</p>
                         </div>
                     ))  
                     }

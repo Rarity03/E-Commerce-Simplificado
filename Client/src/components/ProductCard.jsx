@@ -31,8 +31,20 @@ export default function ProductCard({ product }) {
         <img src={product.image} alt={product.name} className="w-full h-auto object-cover" />
       </Link>
       <div className="p-4">
-        <h2 className="text-xl font-bold text-gray-800 line-clamp-4">{product.name}</h2>
-        <p className="text-3xl text-gray-600">${product.price}</p>
+        <h2 className="sm:text-sm md:text-base lg:text-xl font-bold text-gray-800 line-clamp-4">{product.name}</h2>
+        <div className="flex items-center space-x-2">
+          <p className="text-3xl text-gray-600">${product.finalPrice}</p>
+          {
+            product.discount > 0 ? (
+              <>
+              <p className="text-base text-red-500 line-through">${product.discount}</p>
+              <p className="text-base text-red-500">of discount</p>
+              </>
+            ) : (
+              <></>
+            )
+          }
+        </div>
         { product.state === 'available' ? (
             !isAuthenticated? (
               <button className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"><Link to="/register">Add to car</Link></button>
@@ -63,7 +75,8 @@ ProductCard.propTypes = {
     _id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    finalPrice: PropTypes.number.isRequired,
+    discount: PropTypes.number.isRequired,
     state: PropTypes.string.isRequired,
   }).isRequired,
 };

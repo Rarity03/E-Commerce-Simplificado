@@ -90,6 +90,17 @@ class CarController {
         }
     }
 
+    async totalCarCount(req, res) {
+        try{
+            const userId = req.user.id
+            const userCar = await Car.findOne({ userId });
+            if (!userCar) return res.status(200).json({ total: 0 });
+            const total = userCar.products.reduce((acc, product) => acc + product.amount, 0);
+            return res.status(200).json({ total });
+        } catch (err) {
+            return res.status(400).json(err)
+        }
+    }
 
 }
 

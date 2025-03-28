@@ -6,14 +6,21 @@ import authRoutes from './routes/auth.routes.js'
 import productRoutes from './routes/product.routes.js'
 import carRoutes from './routes/car.routes.js'
 import orderRoutes from './routes/order.routes.js'
+import compression from 'compression'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express()
-app.use(cors(
-    {
-        origin: 'http://localhost:5173',
-        credentials: true
-    }
-))
+app.use(compression());
+
+app.use(cors({
+    origin: (origin, callback) => {
+        callback(null, true);
+    },
+    credentials: true
+}));
+
 
 app.use(morgan('dev'))
 app.use(express.json())

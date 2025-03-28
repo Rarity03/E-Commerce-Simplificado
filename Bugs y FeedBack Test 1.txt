@@ -1,0 +1,12 @@
+Notas FeedBack
+✅-Diseño responsive
+✅-Acortar la descripción del producto
+✅-Numero de productos al lado del carrito
+✅-Lista pop-up simplificada 
+✅-Cambiar las pestañas por iconos
+
+BUGS
+✅-Al cargar el primer producto se queda bloqueado el front hasta que lo vuelvas a recargar, despues de eso se ven todos los productos
+✅ Al compartir la pagina web por alguna razón no se puede acceder al carrito ni a las ordenes
+	-En mi PC me daba acceso no autorizado (401)
+	-En la PC de Jorgue si le regresaba el carrito en la consola pero no se lo 	mostraba

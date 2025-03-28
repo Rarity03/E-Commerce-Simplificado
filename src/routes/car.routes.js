@@ -9,6 +9,7 @@ router.post('/car-add', authRequired, CarController.addToCar)
 router.post('/car-remove', authRequired, CarController.removeFromCar)
 router.post('/car-decrease', authRequired, CarController.decreaseToCar)
 router.delete('/car', authRequired, CarController.deleteCar)
+router.get('/car-count', authRequired, CarController.totalCarCount)
 
 
 export default router

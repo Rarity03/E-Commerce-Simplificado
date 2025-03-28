@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { addToCarRequest, decreaseFromCarRequest, deleteCarRequest, getCarRequest, removeFromCarRequest } from "../api/car";
+import { addToCarRequest, decreaseFromCarRequest, deleteCarRequest, getCarRequest, removeFromCarRequest, totalCarCountRequest } from "../api/car";
 
 export const CarContext = createContext()
 
@@ -16,11 +16,13 @@ export const useCar = () => {
 export const CarProvider = ({ children }) => {
     const [car, setCar] = useState(null)
     const [error, setErrors] = useState([])
+    const [total, setTotal] = useState(0)
 
     const getCar = async (user) => {
         try {
             const res = await getCarRequest(user);
             setCar(res.data.products)
+            await getCarCount()
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -31,6 +33,7 @@ export const CarProvider = ({ children }) => {
             const res = await addToCarRequest({ productId, amount })
             setCar(res.data.products);
             await getCar()
+            await getCarCount()
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -41,6 +44,7 @@ export const CarProvider = ({ children }) => {
             const res = await decreaseFromCarRequest(productId)
             setCar(res.data.products);
             await getCar()
+            await getCarCount()
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -51,6 +55,7 @@ export const CarProvider = ({ children }) => {
             const res = await removeFromCarRequest(user)
             setCar(res.data.products);
             await getCar()
+            await getCarCount()
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -61,6 +66,16 @@ export const CarProvider = ({ children }) => {
             const res = await deleteCarRequest()
             setCar(res.data.products);
             await getCar()
+            await getCarCount()
+        } catch (err) {
+            setErrors(err.response.data)
+        }
+    }
+
+    const getCarCount = async () => {
+        try {
+            const res = await totalCarCountRequest()
+            setTotal(res.data.total)
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -70,11 +85,13 @@ export const CarProvider = ({ children }) => {
         <CarContext.Provider value={{
             car,
             error,
+            total,
             getCar,
             addCar,
             removeCar,
             decreaseCar,
-            deleteCar
+            deleteCar,
+            getCarCount 
         }}>
             {children}
         </CarContext.Provider>

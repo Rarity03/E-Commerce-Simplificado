@@ -13,11 +13,11 @@ export default function HomePage() {
 
     return (
       <>
-        <div className="bg-slate-100 grid-cols-2 flex justify-between p-4">
-          <div className="w-1/4 p-4">
+        <div className="bg-slate-100 flex justify-between p-4 overflow-x-auto mt-20">
+          <div className="w-1/4 p-4 min-w-[250px]">
             <FilterOptions />
           </div>
-          <div className="flex-grow bg-slate-100 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-4">
+          <div className="flex-grow bg-slate-100 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 p-4 min-w-[768px]">
           {products.length > 0 ? (
               products.map((product) => (
                   <ProductCard key={product._id} product={product} />
