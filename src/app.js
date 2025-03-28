@@ -15,9 +15,7 @@ const app = express()
 app.use(compression());
 
 app.use(cors({
-    origin: (origin, callback) => {
-        callback(null, true);
-    },
+    origin: process.env.CLIENT_URL,
     credentials: true
 }));
 
