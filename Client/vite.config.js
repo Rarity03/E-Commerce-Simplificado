@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     allowedHosts: [
       "localhost:5173",
-      "e-commerce-simplificado.onrender.com"
+      "backend-e-commerse.onrender.com"
     ],
     
   }
