@@ -3,6 +3,4 @@ import { connectDB } from './db.js'
 
 connectDB()
 
-app.listen(process.env.PORT, function() {
-    console.log('Servidor escuchando en http://localhost:3000')
-})
+app.listen(process.env.PORT)
