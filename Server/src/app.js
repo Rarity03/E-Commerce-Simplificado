@@ -6,13 +6,11 @@ import authRoutes from './routes/auth.routes.js'
 import productRoutes from './routes/product.routes.js'
 import carRoutes from './routes/car.routes.js'
 import orderRoutes from './routes/order.routes.js'
-import compression from 'compression'
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const app = express()
-app.use(compression());
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
