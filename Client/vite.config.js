@@ -1,13 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 
-// https://vite.dev/config/
+// Extrae el host de la URL de la variable de entorno
+const apiUrl = import.meta.env.VITE_API_URL ? new URL(import.meta.env.VITE_API_URL).hostname : 'localhost';
+
 export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: [
       "localhost:5173",
-      ""
+      apiUrl 
     ],
     
   }
