@@ -5,13 +5,14 @@ import RegisterPage from "./pages/RegisterPage"
 import ProtectedRoute from "./ProtectedRoute"
 import ProfilePage from "./pages/ProfilePage"
 import CarPage from "./pages/CarPage"
-import OrderPage from "./pages/OrderPage"
+import OrdersPage from "./pages/OrdersPage"
 import { AuthProvider } from "./context/AuthContext"
 import { ProductProvider } from "./context/ProductContext"
 import { CarProvider } from "./context/CarContext"
 import { OrderProvider } from "./context/OrderContext"
 import Navbar from "./components/Navbar"
 import ProductPage from "./pages/ProductPage"
+import OneOrderPage from "./pages/OneOrderPage"
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
                 <Route element= {<ProtectedRoute />}> 
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/car" element={<CarPage />} />
-                    <Route path="/orders" element={<OrderPage />} />
+                    <Route path="/orders" element={<OrdersPage />} />
+                    <Route path="/orders/:id" element={<OneOrderPage />} />
                 </Route>
               </Routes>
             </BrowserRouter>

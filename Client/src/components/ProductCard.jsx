@@ -33,7 +33,7 @@ export default function ProductCard({ product }) {
       <div className="p-4">
         <h2 className="sm:text-sm md:text-base lg:text-xl font-bold text-gray-800 line-clamp-4">{product.name}</h2>
         <div className="flex items-center space-x-2">
-          <p className="text-3xl text-gray-600">${product.finalPrice}</p>
+          <p className="text-2xl text-gray-600">${product.finalPrice}</p>
           {
             product.discount > 0 ? (
               <>

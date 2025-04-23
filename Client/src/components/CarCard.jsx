@@ -6,7 +6,7 @@ export default function CarCard({ product, amount, onIncrease, onDecrease, onRem
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row items-center p-4 border border-gray-200 m-7 min-w-[400px]">
       <Link to={`/product/${product._id}`}>
-        <img className="h-48 w-48 object-cover block" src={product.image} alt={product.name} />
+        <img className="max-h-48 max-w-48 object-cover block" src={product.image} alt={product.name} />
       </Link>
       <div className="p-4 flex-grow ">
         <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>

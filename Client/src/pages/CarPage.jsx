@@ -64,10 +64,10 @@ export default function CarPage() {
                 />
               ))
             }
-            <div className="justify-center item-center flex flex-col">
-                <hr className="my-4" />
-                <p className="text-2xl font-bold">Total: ${car.reduce((acc, item) => acc + item.productId.price * item.amount, 0)}</p>
-                <button onClick={handleOrder} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">Comprar</button>
+            <div className="mx-8 flex flex-row">
+                <hr className="my-4"/>
+                <p className="text-2xl font-bold mx-6">Total: ${car.reduce((acc, item) => acc + item.productId.price * item.amount, 0)}</p>
+                <button onClick={handleOrder} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 ">Comprar</button>
             </div>
           </div>
         ) : (

@@ -5,7 +5,7 @@ import ProfileHeader from '../assets/ProfileHeader.png'
 import { useEffect, useState } from "react"
 
 export default function ProfilePage() {
-  const { user, update } = useAuth()
+  const { user, update, errors: updateErrors} = useAuth()
   const [profileEdit, setProfileEdit] = useState(false)
   const [formData, setFormData] = useState({
     name: user.name,
@@ -57,6 +57,10 @@ export default function ProfilePage() {
             </div>
             <div className="pt-16">
               <h1 className="text-2xl font-bold text-center text-gray-800">Profile</h1>
+              {/* Mostrar errores */}
+              {updateErrors && updateErrors.map((error, index) => (
+                <p key={index} className="text-red-500 text-center mt-2">{error}</p>
+              ))}
               <div className="mt-4">
                 <label className="block text-gray-700 mt-2 flex items-center">
                   <FaUser className="mr-2" /> Name

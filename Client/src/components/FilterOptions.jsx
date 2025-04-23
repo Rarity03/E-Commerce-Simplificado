@@ -60,6 +60,19 @@ export default function FilterOptions () {
                     <li>
                         <label className="flex items-center">
                             <input
+                            type="radio"
+                            name="category"
+                            value=""
+                            checked={selectedCategory === ''}
+                            onChange={handleCategoryChange}
+                            className="form-radio text-blue-500"
+                            />
+                            <span className="ml-2 text-gray-700">All Categories</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label className="flex items-center">
+                            <input
                                 type="radio"
                                 name="category"
                                 value="audio"

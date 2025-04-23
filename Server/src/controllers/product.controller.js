@@ -12,7 +12,6 @@ class ProductController{
             if (category) query.category = category
             if (name) query.name = { $regex: name, $options: 'i' }
             if (state) query.state = state
-            console.log(query)
             const products = await Product.find(query);
             res.status(200).json(products);
         } catch (error) {

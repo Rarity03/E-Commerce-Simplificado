@@ -8,5 +8,22 @@ Notas FeedBack
 BUGS
 ✅-Al cargar el primer producto se queda bloqueado el front hasta que lo vuelvas a recargar, despues de eso se ven todos los productos
 ✅ Al compartir la pagina web por alguna razón no se puede acceder al carrito ni a las ordenes
-	-En mi PC me daba acceso no autorizado (401)
-	-En la PC de Jorgue si le regresaba el carrito en la consola pero no se lo 	mostraba
+
+
+FeedBack 2
+
+✅ -Al momento de registrarse o logearse mostrar los errores de las validaciones de cada campo
+✅ -Borra los productos que no tienen imagen 
+✅ -En ordenes cambiar el boton grande a un lado de la pantalla
+✅ -Opción para volver a comprar o ver el producto otra vez (ordenes)
+
+✅ -Cambiar la ventana de Oredenes, solo aparezca la orden y dar click para ver los detalles de cada orden en vez de mostrar toda la orden completa
+
+✅-No abarcar toda la pantalla, centrar los campos un poco al menos
+ 
+
+Bugs
+
+✅-Mal truncamiento en algunos productos
+⚠️-Resize de las imagenes en ordenes (Las imagenes se rompen)
+✅-Cuando se leccionas un filtro, si te vas a una pagina y regresas a la principal los proudctos con el filtro se mantiene sin el filtro activo

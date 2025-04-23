@@ -5,11 +5,22 @@ import FilterOptions from "../components/FilterOptions"
 
 export default function HomePage() {
 
-    const { getProducts, products, filters } = useProduct()
+    const { getProducts, products, filters, setFilters} = useProduct()
 
     useEffect(() => {
         getProducts()
     },[filters])
+
+    useEffect(() => {
+      return () => {
+        setFilters({
+          minPrice: 0,
+          maxPrice: 2000,
+          category: '',
+          state: '',
+        });
+      };
+    }, [setFilters]);
 
     return (
       <>

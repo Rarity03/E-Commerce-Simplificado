@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function LoginPage() {
   const { register, handleSubmit, formState:{ errors } } = useForm();
-  const { singin, isAuthenticated, errors: registerErrors } = useAuth();
+  const { singin, isAuthenticated, errors: loginErrors } = useAuth();
   const navigation = useNavigate()
 
   useEffect(() => {
@@ -19,11 +19,7 @@ export default function LoginPage() {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100 min-w-[600px] overflow-x-auto mt-20">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
-          {
-            registerErrors && registerErrors.map((error, index) => {
-              <div className="bg-red-500 p-2 text-white mb-2" key={index}>{error}</div>
-            })
-          }
+          
           <h1 className="text-2xl font-bold text-center text-gray-800">Login</h1>
           <form onSubmit={onSubmit}>
             <div>
@@ -35,6 +31,9 @@ export default function LoginPage() {
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {errors.email && <p className="text-red-500 mt-1">Email is required</p>}
+              {loginErrors && loginErrors.map((error, index) => (
+                error.includes('Email') && <p className="text-red-500 mt-1" key={index}>{error}</p>
+              ))}
             </div>
             <div>
               <label className="block text-gray-700 mt-2 ">Password</label>
@@ -45,6 +44,9 @@ export default function LoginPage() {
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {errors.password && <p className="text-red-500 mt-1">Password is required</p>}
+              {loginErrors && loginErrors.map((error, index) => (
+                error.includes('Password') && <p className="text-red-500 mt-1" key={index}>{error}</p>
+              ))}
             </div>
             <button
               type="submit"

@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data)
             setIsAuthenticated(true)
         } catch (err) {
+            
             setErrors(err.response.data)
         }
     }
@@ -49,6 +50,7 @@ export const AuthProvider = ({ children }) => {
             const res = await updateProfileRequest(user)
             setUser(res.data)
             setIsAuthenticated(true)
+            setErrors([]);
         } catch (err) {
             setErrors(err.response.data)
         }
@@ -89,7 +91,7 @@ export const AuthProvider = ({ children }) => {
         if ( errors.length > 0){
             const timer = setTimeout(() => {
                 setErrors([])
-            }, 5000)
+            }, 10000)
             return () => clearTimeout(timer)
         }
     },[errors])

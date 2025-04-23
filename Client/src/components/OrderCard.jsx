@@ -1,25 +1,38 @@
 import PropTypes from 'prop-types';
-import { format } from "date-fns"
+import { FaShoppingBag } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 export default function OrderCard ({ order }){
+    const navigate = useNavigate()
+
+    const handleNav = (productId) => {
+        navigate(`/product/${productId}`)
+    }
+
     return(
         <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4 ">
             <div className='p-4 border-b border-gray-300'>
                 <p className="text-lg font-bold">Order ID: {order._id}</p>
                 <p>Shipping Address: {order.addressShipping}</p>
-                <p>Order Date: {format(new Date(order.date), "dd/MM/yyyy HH:mm")}</p>
+                <p className="text-sm text-gray-500">Date: {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <div className='p-4'>
                 <div className="flex flex-col gap-2">
                     {
                     order.products.map((product) => (
                         <div key={product.productId._id} className="flex flex-col md:flex-row justify-between items-center w-full border-b py-2">
-                            <div className="w-full md:w-1/4 max-h-64">.
-                                <img src={product.productId.image} alt={product.productId.name} className="w-full h-full object-cover" />
+                            <div>
+                                <img src={product.productId.image} alt={product.productId.name} className="w-full max-h-64 object-cover" />
                             </div>
                             <p className="w-full md:w-1/2 m-1 truncate text-center md:text-left">{product.productId.name}</p>
-                            <p className="w-full md:w-1/4 m-1 text-center">{product.amount}</p>
-                            <p className="w-full md:w-1/4 m-1 sm:text-center md:text-right font-bold">${product.price}</p>
+                            <p className="w-full md:w-1/4 m-1 text-center">Amount: {product.amount}</p>
+                            <p className="w-full md:w-1/4 m-1 mx-4 sm:text-center md:text-right font-bold">${product.price}</p>
+                            <button
+                             onClick={() => handleNav(product.productId._id)}
+                             className="h-full text-cente flex items-center justify-center rounded-lg bg-blue-500 text-white p-2 transition duration-300 ease-in-out transform hover:scale-105"
+                            >
+                                <FaShoppingBag />
+                            </button>
                         </div>
                     ))  
                     }

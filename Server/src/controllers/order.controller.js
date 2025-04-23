@@ -13,10 +13,11 @@ class OrderController {
             const addressShipping = user.direction;
             const finalPrices = userCar.products.map(product => product.productId.finalPrice * product.amount)
             const total = finalPrices.reduce((acc, price) => acc + price, 0).toFixed(2)
+            console.log("UserCar: ", userCar.products)
             const newOrder = new Order({
                 userId,
                 products: userCar.products.map(product => ({
-                    productId: product.productId._id,
+                    productId: product.productId,
                     amount: product.amount,
                     price: product.productId.finalPrice
                 })),
@@ -44,7 +45,7 @@ class OrderController {
 
     async getOrder (req, res) {
         try{
-            const order = await Order.findById(req.params.id);
+            const order = await Order.findById(req.params.id).populate('products.productId')
             if (!order) return res.status(404).json(['Order not found'])
             res.json(order)
         } catch (err) {

@@ -17,7 +17,8 @@ export const OrderProvider = ({ children }) => {
     const [orders, setOrders] = useState(null)
     const [order, setOrder] = useState(null)
     const [error, setErrors] = useState([])
-
+    const [loading, setLoading] = useState(true);
+    
     const createOrder = async () =>{
         try{
             const res = await createOrderRequest()
@@ -37,11 +38,14 @@ export const OrderProvider = ({ children }) => {
     }
 
     const getOrder = async (orderId) => {
+        setLoading(true);
         try{
             const res = await getOrderRequest(orderId)
             setOrder(res.data)
         } catch (err) {
             setErrors(err.response.data)
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -50,9 +54,11 @@ export const OrderProvider = ({ children }) => {
                 orders,
                 order,
                 error,
+                loading,
                 getOrders,
                 getOrder,
-                createOrder
+                createOrder,
+                setLoading,
         }}>
             {children}
         </OrderContext.Provider>
