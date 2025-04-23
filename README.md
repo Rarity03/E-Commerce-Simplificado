@@ -94,14 +94,20 @@ npm run dev
 ---
 
 ## **Uso**
+
 1.Abre el navegador y ve a http://localhost:5173.
+
 2.Regístrate o inicia sesión.
+
 3.Explora los productos, agrégalos al carrito y realiza pedidos.
+
 4.Gestiona tu perfil desde la sección de usuario.
 
 ---
 
 ## **Contacto**
 -Autor: Kenneth Kael Mendoza Pliego 
+
 -Email: kennethkael@gmail.com
+
 -GitHub: https://github.com/Rarity03
