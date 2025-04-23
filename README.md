@@ -97,7 +97,9 @@ npm run dev
 
 1.Abre el navegador y ve a http://localhost:5173.
 
-2.Regístrate o inicia sesión.
+2.Regístrate o inicia sesión. Puedes logearte con la siguiente cuenta publica:
+Email: PublicTest@email.com
+Password: PublicTest
 
 3.Explora los productos, agrégalos al carrito y realiza pedidos.
 
